@@ -10,4 +10,4 @@ server.use(appRoutes)
 server.use(errorHandler)
 server.listen(process.env.PORT, () => (
     console.log("💥 servidor ligado na porta 5555 💥")
-))
+)) 
