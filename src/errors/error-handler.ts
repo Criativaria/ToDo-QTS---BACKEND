@@ -9,6 +9,8 @@ export async function errorHandler(error: Error, request: Request, response: Res
             message: error.message
         })
     }
+
+    console.error("internal error", error);
     return response.status(500).json({
         message: "erro interno!!! perdao ai galera, tropecei nos fios"
     })
