@@ -6,6 +6,6 @@ const taskRoute = Router();
 
 
 taskRoute.post('/', taskController.createTask)
-taskRoute.delete('/:taskId', taskController.deleteTask)
+taskRoute.put('/:taskId', taskController.deleteTask)
 
 export { taskRoute }

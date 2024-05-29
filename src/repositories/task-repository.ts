@@ -24,7 +24,10 @@ export class TaskRepository {
     }
 
     public static async deleteTask(userId: string, taskId: string) {
-        const task = await prisma.task.delete({
+        const task = await prisma.task.update({
+            data: {
+                done: true
+            },
             where: {
                 userId: userId,
                 id: taskId

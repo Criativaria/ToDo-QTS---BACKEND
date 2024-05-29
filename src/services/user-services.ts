@@ -46,7 +46,6 @@ export class userService {
         }
 
         const token = AuthService.genToken({ id: user.id })
-        console.log(token)
         return { token }
     }
 

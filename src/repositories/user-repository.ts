@@ -12,7 +12,6 @@ export class UserRepository {
             }
 
         })
-        console.log("usuario criado com sucesso");
         return newUser;
     }
 
