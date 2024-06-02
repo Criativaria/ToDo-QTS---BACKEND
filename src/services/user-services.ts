@@ -1,22 +1,23 @@
-import { JsonObject } from "@prisma/client/runtime/library";
 import { UserRepository } from "../repositories/user-repository";
 import { WebError } from "../errors/web-error";
 import { AuthService } from "./AuthService";
 import { checkPassword, hashPassword } from "../utils/bcrypt";
+import { CreateUserRequestDto } from "../controllers/user/dto/create-user-request-dto";
 
 
 export class userService {
 
-    public static async createUser(nickname: string, senha: string, nome: string) {
+    public static async createUser(createUser: CreateUserRequestDto) {
+        const { nickname, nome, senha } = createUser
 
-        if (!nickname || !senha || !nome) {
-            throw new WebError(400, "informações invalidas");
+        const nicknameExists = await UserRepository.findUserByNickname(createUser.nickname)
+
+        if (nicknameExists) {
+            throw new WebError(409, "esse nickname já existe");
         }
         const senhaCriptografada = await hashPassword(senha)
-        const info = await UserRepository.createUser(nickname, senhaCriptografada, nome)
-
-        return info;
-
+        const user = await UserRepository.createUser(nickname, senhaCriptografada, nome)
+        return user;
     }
 
     public static async getUserById(userId: string) {
@@ -32,6 +33,7 @@ export class userService {
     }
 
     public static async login(nickname: string, senha: string) {
+
         if (!nickname || !senha) {
             throw new WebError(400, "informações invalidas");
         }
@@ -41,7 +43,7 @@ export class userService {
             throw new WebError(404, "os dados informados não estão corretos");
         }
 
-        if (! await checkPassword(senha, user.senha)) {
+        if (!await checkPassword(senha, user.senha)) {
             throw new WebError(404, "os dados informados não estão corretos");
         }
 

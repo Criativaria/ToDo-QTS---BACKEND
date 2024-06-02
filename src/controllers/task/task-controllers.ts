@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { taskService } from "../services/task-service";
+import { taskService } from "../../services/task-service";
 
 
 export class taskController {

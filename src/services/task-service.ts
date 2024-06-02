@@ -1,6 +1,5 @@
 import { WebError } from "../errors/web-error";
 import { TaskRepository } from "../repositories/task-repository";
-import { UserRepository } from "../repositories/user-repository";
 
 
 export class taskService {
