@@ -13,6 +13,14 @@ export class taskService {
         return info
     }
 
+    public static async getTask(userId: string) {
+        if (!userId) {
+            throw new WebError(400, "informações invalidas");
+        }
+        const info = await TaskRepository.getTask(userId)
+        return info
+    }
+
     public static async deleteTask(userId: string, taskId: string) {
         if (!userId || !taskId) {
             throw new WebError(400, "informações invalidas");

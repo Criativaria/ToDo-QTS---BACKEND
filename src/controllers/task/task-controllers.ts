@@ -12,6 +12,12 @@ export class taskController {
         response.json(info)
     }
 
+    public static async getTask(request: Request, response: Response) {
+        const userId = request.user.id
+        const info = await taskService.getTask(userId)
+        response.json(info)
+    }
+
     public static async deleteTask(request: Request, response: Response) {
         const userId = request.user.id
         const taskId = request.params.taskId

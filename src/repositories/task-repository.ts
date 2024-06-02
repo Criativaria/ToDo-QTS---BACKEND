@@ -3,6 +3,15 @@ import { prisma } from "../prisma";
 
 export class TaskRepository {
 
+    public static async getTask(userId: string) {
+        const tasks = await prisma.task.findMany({
+            where: {
+                userId: userId
+            }
+        })
+        return tasks;
+    }
+
     public static async getTaskById(taskId: string) {
         const task = await prisma.task.findUnique({
             where: {

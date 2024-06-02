@@ -6,7 +6,7 @@ import cors from 'cors'
 import { errorHandler } from './errors/error-handler';
 
 const server = express();
-server.use(cors())
+server.use(cors({ origin: process.env.LINK_FRONT, credentials: true }))
 server.use(cookieParser())
 server.use(express.json())
 server.use(appRoutes)
