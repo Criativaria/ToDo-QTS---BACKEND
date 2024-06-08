@@ -19,7 +19,8 @@ export class UserControler {
         const { token, user } = await userService.login(nickname, senha)
 
         response.cookie("session", token, {
-            maxAge: 2 * 24 * 60 * 60 * 1000 // 2 dias
+            maxAge: 2 * 24 * 60 * 60 * 1000, // 2 dias
+            sameSite: "none"
         })
         response.status(200).json({ user })
     }
