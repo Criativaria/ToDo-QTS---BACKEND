@@ -46,9 +46,9 @@ export class userService {
         if (!await checkPassword(senha, user.senha)) {
             throw new WebError(404, "os dados informados não estão corretos");
         }
-        const userNome = user.name;
+
         const token = AuthService.genToken({ id: user.id })
-        return { token, userNome }
+        return { token, user }
     }
 
 }
