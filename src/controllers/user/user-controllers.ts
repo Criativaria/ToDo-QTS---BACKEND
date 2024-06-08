@@ -20,7 +20,8 @@ export class UserControler {
 
         response.cookie("session", token, {
             maxAge: 2 * 24 * 60 * 60 * 1000, // 2 dias
-            sameSite: "none"
+            sameSite: "none",
+            secure: true
         })
         response.status(200).json({ user })
     }
