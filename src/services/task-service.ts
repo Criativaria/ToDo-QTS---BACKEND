@@ -4,6 +4,7 @@ import { TaskRepository } from "../repositories/task-repository";
 
 export class taskService {
 
+
     public static async createTask(userId: string, text: string) {
 
         if (!userId || !text) {

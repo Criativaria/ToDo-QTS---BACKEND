@@ -6,6 +6,7 @@ export class TaskRepository {
     public static async getTask(userId: string) {
         const tasks = await prisma.task.findMany({
             where: {
+                done: false,
                 userId: userId
             }
         })
